@@ -11,6 +11,8 @@ def solve_error(error):
     browser = p.chromium.launch(headless=False)
     page = browser.new_page()
     page.goto("https://stackoverflow.com/search?q=" + error.replace(" ", "+") + "+Python")
+    if page.locator(".flex--item6").first.is_visible():
+            page.locator(".flex--item6").first.click()
     if page.get_by_text("captcha").is_visible():
         input("A pagina necessita de verificação captcha, complete-a e pressione enter para continuar:")
     time.sleep(2)
